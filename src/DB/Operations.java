@@ -19,8 +19,8 @@ public class Operations
 	{
 		String response = "";
 		Connection connection = MyConnection.getConnection();
-		String select = "SELECT * FROM USERS WHERE EMAIL = ?";
-		String sql = "INSERT INTO mmdb.USERS(EMAIL,PASSWORD,FIRSTNAME,LASTNAME,TYPE,PHONE) VALUES(?,?,?,?,?,?)";
+		String select = "SELECT * FROM users WHERE EMAIL = ?";
+		String sql = "INSERT INTO users(EMAIL,PASSWORD,FIRSTNAME,LASTNAME,TYPE,PHONE) VALUES(?,?,?,?,?,?)";
 		PreparedStatement preparedStatement1 = connection.prepareStatement(select);
 		preparedStatement1.setString(1, register.getEmail());
 		ResultSet result = preparedStatement1.executeQuery();
