@@ -2,7 +2,10 @@ package DB;
 
 import java.util.ArrayList;
 import java.sql.*;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
+import javax.naming.spi.DirStateFactory.Result;
 import javax.ws.rs.WebApplicationException;
 
 import com.mysql.jdbc.Driver;
@@ -115,11 +118,37 @@ public static Login Login(Login log) throws SQLException{
 	
 	
 	
-public static void MenteePro(MenteeProfile m) 
+public static void MenteePro(MenteeProfile m) throws SQLException 
 {
-	try{
-	
+	 String timeStamp = new SimpleDateFormat("yyyy.MM.dd").format(new Date());
 	 Connection connection = MyConnection.getConnection();
+	 String select ="SELECT * FROM mentee WHERE USERID=?";
+	 PreparedStatement prs1=connection.prepareStatement(select);
+	 prs1.setInt(1, m.getUserId());
+	 ResultSet rs=prs1.executeQuery();
+	 if (rs.next()){
+		 String sql = "UPDATE mentee(USERID,GENDER,RIGISTRATION_DATE,ADDRESS,EDUCATION_STATUS,ACADIMIC_INSTITUTION,SEMESTERS_LEFT,TSOFENT_CURSE,NOTES) VALUES(?,?,?,?,?,?,?,?,?)";
+		 PreparedStatement prs=connection.prepareStatement(sql);
+		 //if(m.getUserId()!=0)
+		 prs.setInt(1, m.getUserId());
+		 System.out.println(m.getUserId());
+		// if(m.getGender()!=null)
+		 prs.setString(2, m.getGender());
+		// if(m.getCourseRegistrationDate()!=null)
+		 prs.setString(3, timeStamp); 
+		// if(m.getAddress()!=null)
+		 prs.setString(4, m.getAddress());
+		// if(m.getEducationStatus()!=null)
+		prs.setString(5, m.getEducationStatus());
+		//if(m.getAcadimicinstitution()!=null)
+		prs.setString(6,m.getAcadimicinstitution());
+		prs.setInt(7, m.getSemesterLeft());
+		prs.setInt(8, m.getTsofenCourse());
+		prs.setString(9,m.getNote());
+		prs.executeUpdate();
+		 
+	 }
+	 else{
 	 String sql = "INSERT INTO mentee(USERID,GENDER,RIGISTRATION_DATE,ADDRESS,EDUCATION_STATUS,ACADIMIC_INSTITUTION,SEMESTERS_LEFT,TSOFENT_CURSE,NOTES) VALUES(?,?,?,?,?,?,?,?,?)";
 	 PreparedStatement prs=connection.prepareStatement(sql);
 	 //if(m.getUserId()!=0)
@@ -128,7 +157,7 @@ public static void MenteePro(MenteeProfile m)
 	// if(m.getGender()!=null)
 	 prs.setString(2, m.getGender());
 	// if(m.getCourseRegistrationDate()!=null)
-	 prs.setString(3, m.getCourseRegistrationDate()); 
+	 prs.setString(3,timeStamp ); 
 	// if(m.getAddress()!=null)
 	 prs.setString(4, m.getAddress());
 	// if(m.getEducationStatus()!=null)
@@ -139,12 +168,16 @@ public static void MenteePro(MenteeProfile m)
 	prs.setInt(8, m.getTsofenCourse());
 	prs.setString(9,m.getNote());
 	prs.executeUpdate();
-	}catch(Exception e){e.printStackTrace();}
+	}
 	
 }
-	
+
+
 
 	
-	
 }
+	
+	
+
+
 

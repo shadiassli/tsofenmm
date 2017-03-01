@@ -9,11 +9,9 @@ public class MenteeProfile
 	private int userId;
    private String fname;
    private String lname;
-   private long id ;
    private String gender;
    private String phone;
    private String email;
-
    private String major;
    private int semesterLeft;
    private String educationStatus;
@@ -21,7 +19,6 @@ public class MenteeProfile
    private String address;
    private String note ;
    private int tsofenCourse;
-   private String courseRegistrationDate;
    private byte[] imageFile;
    private byte[] resumeFile;
    private byte[] gradeSheetFile;
@@ -29,12 +26,11 @@ public class MenteeProfile
    public MenteeProfile() {
    }
 
-   public MenteeProfile(int user,String fname, String lname, long id, String gender, String phone, String email, String major, int semesterLeft, String educationStatus, String address, String note, int tsofenCourse,String Acadimicinstitution, String courseRegistrationDate, byte[] imageFile, byte[] resumeFile, byte[] gradeSheetFile) {
+   public MenteeProfile(int user,String fname, String lname,  String gender, String phone, String email, String major, int semesterLeft, String educationStatus, String address, String note, int tsofenCourse,String Acadimicinstitution, byte[] imageFile, byte[] resumeFile, byte[] gradeSheetFile) {
       
 	   this.userId=user;
 	   this.fname = fname;
        this.lname = lname;
-       this.id = id;
        this.gender = gender;
        this.phone = phone;
        this.email = email;
@@ -45,7 +41,6 @@ public class MenteeProfile
        this.address = address;
        this.note = note;
        this.tsofenCourse = tsofenCourse;
-       this.courseRegistrationDate = courseRegistrationDate;
        this.imageFile = imageFile;
        this.resumeFile = resumeFile;
        this.gradeSheetFile = gradeSheetFile;
@@ -76,13 +71,6 @@ public class MenteeProfile
        this.lname = lname;
    }
 
-   public long getId() {
-       return id;
-   }
-
-   public void setId(long id) {
-       this.id = id;
-   }
 
    public String getGender() {
        return gender;
@@ -167,14 +155,7 @@ public void setEmail(String email) {
        this.tsofenCourse = tsofenCourse;
    }
 
-   public String getCourseRegistrationDate() {
-       return courseRegistrationDate;
-   }
-
-   public void setCourseRegistrationDate(String courseRegistrationDate) {
-       this.courseRegistrationDate = courseRegistrationDate;
-   }
-
+ 
    public byte[] getImageFile() {
        return imageFile;
    }
